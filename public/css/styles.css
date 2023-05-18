@@ -1,5 +1,8 @@
-.container-fluid {
+html{
+  margin-bottom: 70px;
+}.container-fluid {
     padding-top: 70px;
+    margin-bottom: 70px;
     padding-bottom: 70px;
 }
 .navbar {
@@ -12,7 +15,7 @@
     letter-spacing: 5px;
 }
 .navbar-nav  li a:hover {
-    color: #1abc9c !important;
+    color: #1abc9c;
 }
 
 
@@ -32,4 +35,15 @@
 	margin-top: 15px;
 	font-size: 12px;
   color: #fff;
+}
+
+ul{
+  display: flex;
+  justify-content: space-evenly;
+  list-style: none;
+
+}
+
+a{
+  color: #1abc9c;
 }

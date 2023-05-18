@@ -1,7 +1,3 @@
-//jshint esversion:6
-// declaring npm packages that are used
-
-//import express from "express"
 
 const mongoose=require("mongoose");
 const express = require("express");
@@ -10,7 +6,9 @@ const ejs = require("ejs");
 const lodash=require("lodash");
 const length=100;
 
-mongoose.connect("mongodb+srv://dhruv:Dhruv@cluster0.rapcoui.mongodb.net/blogDB")
+// connecting to mongoose Server
+mongoose.connect("mongodb+srv://dhruv:MEHTA@cluster0.rapcoui.mongodb.net/blogDB");
+
 const app = express();
 const posts=[];
 
@@ -34,16 +32,16 @@ const Post=mongoose.model("Post",PostSchema);
 const List=mongoose.model("List",ListSchema);
 
 // structured fixed contact
-const homeStartingContent = "Lacus vel facilisis volutpat est velit egestas dui id ornare. Semper auctor neque vitae tempus quam. Sit amet cursus sit amet dictum sit amet justo. Viverra tellus in hac habitasse. Imperdiet proin fermentum leo vel orci porta. Donec ultrices tincidunt arcu non sodales neque sodales ut. Mattis molestie a iaculis at erat pellentesque adipiscing. Magnis dis parturient montes nascetur ridiculus mus mauris vitae ultricies. Adipiscing elit ut aliquam purus sit amet luctus venenatis lectus. Ultrices vitae auctor eu augue ut lectus arcu bibendum at. Odio euismod lacinia at quis risus sed vulputate odio ut. Cursus mattis molestie a iaculis at erat pellentesque adipiscing.";
+const homeStartingContent = "Welcome to our blog website! Here, we share our thoughts, ideas, and experiences on various topics ranging from lifestyle, health, travel, and technology to entertainment, sports, and more. Our aim is to provide you with informative, engaging, and thought-provoking content that will keep you entertained and informed. Whether you're looking for advice, inspiration, or just a good read, our blog is the perfect place for you. So, sit back, relax, and enjoy our articles. Don't forget to leave your comments and feedback, as we always love hearing from our readers!";
 
-const aboutContent ="Hac habitasse platea dictumst vestibulum rhoncus est pellentesque. Dictumst vestibulum rhoncus est pellentesque elit ullamcorper. Non diam phasellus vestibulum lorem sed. Platea dictumst quisque sagittis purus sit. Egestas sed sed risus pretium quam vulputate dignissim suspendisse. Mauris in aliquam sem fringilla. Semper risus in hendrerit gravida rutrum quisque non tellus orci. Amet massa vitae tortor condimentum lacinia quis vel eros. Enim ut tellus elementum sagittis vitae. Mauris ultrices eros in cursus turpis massa tincidunt dui.";
+const aboutContent ="Hi there! My name is Dhruv Mehta, and I'm a student and a developer. I've been interested in technology since I was a child, and over the years, I've developed a passion for programming and web development .Recently, I had the opportunity to work on a website project, and I am proud to say that I developed this website on my own.The website that you are currently on is one of my creations, and I'm thrilled to share it with you.As a student, I have always been fascinated by the power of the internet and the endless possibilities it presents. Developing websites has allowed me to explore that power and create something tangible that people can use and interact with.This website was a project that I worked on with a team of developers, designers, and content creators. We aimed to create a platform that would be easy to use, visually appealing, and provide value to its users. We spent countless hours brainstorming, designing, and coding to bring this website to life.Throughout the development process, I learned a lot about website development, from designing user interfaces to writing clean and efficient code. The experience was both challenging and rewarding, and it helped me grow as a developer.As a student, I am always looking for ways to learn and grow, and this project provided me with the perfect opportunity to do so. It allowed me to put my skills to the test and learn from experienced developers and designers.I am proud of what we've accomplished with this website, and I hope you find it useful and enjoyable to use. As a developer, I am always looking for new challenges and projects to work on, so if you have any ideas or suggestions, feel free to reach out to me.Thank you for taking the time to read this, and I hope you enjoy using this website as much as I enjoyed developing it."
 
-const contactContent = "Scelerisque eleifend donec pretium vulputate sapien. Rhoncus urna neque viverra justo nec ultrices. Arcu dui vivamus arcu felis bibendum. Consectetur adipiscing elit duis tristique. Risus viverra adipiscing at in tellus integer feugiat. Sapien nec sagittis aliquam malesuada bibendum arcu vitae. Consequat interdum varius sit amet mattis. Iaculis nunc sed augue lacus. Interdum posuere lorem ipsum dolor sit amet consectetur adipiscing elit. Pulvinar elementum integer enim neque. Ultrices gravida dictum fusce ut placerat orci nulla. Mauris in aliquam sem fringilla ut morbi tincidunt. Tortor posuere ac ut consequat semper viverra nam libero.";
+const contactContent = "I would love to hear from you! Whether you have a question, a suggestion, or just want to say hello, please feel free to get in touch with me. You can find me on Github and LinkedIn, where I share my latest projects and updates. You can also reach me on WhatsApp, and I'll be happy to chat with you.Don't hesitate to contact me if you need any assistance or want to discuss any ideas or projects. I'm always excited to collaborate with other developers and professionals in the field.Thank you for visiting my website, and I look forward to hearing from you soon!";
 
 // get requests
 app.get("/",(req,res)=>{
   Post.find({},(err,posts)=>{
-    res.render("index",{
+    res.render("home",{
       content:homeStartingContent,
       arr:posts
     })
@@ -83,8 +81,7 @@ app.get("/compose",(req,res)=>{
 app.post("/",(req,res)=>{
   const content1=req.body.newJournalContent;
   const title=req.body.newJournalTitle;
-  //console.log(content1);
-var content = content1.substring(0,length);
+var content = content1;
   const post1=new Post({
     head:title,
     data:content
@@ -92,7 +89,7 @@ var content = content1.substring(0,length);
 
   post1.save((err)=>{
     if(!err){
-      res.render("/index");
+      res.render("/home");
     }
   });
 //console.log(posts);
